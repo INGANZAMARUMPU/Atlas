@@ -1,12 +1,12 @@
-with open("db.txt") as file:
+with open("inputs/03052022.txt") as file:
 	list_line = file.readline().split("}, {")
-	f_founds = open("founds.csv", "w")
+	f_founds = open("output/03052022.csv", "w")
 	indexes = []
 	fake_indexes = []
 	founds = []
 	fake_founds = []
 	for i, line in enumerate(list_line):
-		line = line.replace("{","").replace("},","").replace(", ", "+")
+		line = line.replace("{","").replace("}","").replace(", ", "+")
 		somme = eval(line)
 		if somme == 170:
 			indexes.append(i)

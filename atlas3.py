@@ -1,5 +1,5 @@
 last_tot = 0
-with open("atlas3.csv") as file:
+with open("inputs/atlas3.csv") as file:
 	lines = file.readlines()
 	i = 1
 	f_founds = open("atlas3_results.csv", "w")
@@ -83,17 +83,17 @@ with open("atlas3.csv") as file:
 		C3C4C5[i]["remain"] = item["remain"]
 	
 	
-	print("C1;C2;C3;C4;C5;C1+C2+C3;local;global;remain;;C1+C3+C4;local;global;remain;;C1+C4+C5;local;global;remain;;C2+C3+C4;local;global;remain;;C2+C4+C5;local;global;remain;;C3+C4+C5;local;global;remain;;", file=f_founds)
+	print("C1;C2;C3;C4;C5;C1+C2+C3(remain);local;global;C1+C3+C4(remain);local;global;C1+C4+C5(remain);local;global;C2+C3+C4(remain);local;global;C2+C4+C5(remain);local;global;C3+C4+C5(remai);local;global;;", file=f_founds)
 	i = 1
 	while i < len(lines):
 		line = lines[i].replace("\n", "").split(";")
 		print(f"{line[0]};{line[1]};{line[2]};{line[3]};{line[4]};\
-			{C1C2C3[i-1]['key']};{C1C2C3[i-1]['l_value']};{C1C2C3[i-1]['g_value']};{C1C2C3[i-1]['remain']};;\
-			{C1C3C4[i-1]['key']};{C1C3C4[i-1]['l_value']};{C1C3C4[i-1]['g_value']};{C1C3C4[i-1]['remain']};;\
-			{C1C4C5[i-1]['key']};{C1C4C5[i-1]['l_value']};{C1C4C5[i-1]['g_value']};{C1C4C5[i-1]['remain']};;\
-			{C2C3C4[i-1]['key']};{C2C3C4[i-1]['l_value']};{C2C3C4[i-1]['g_value']};{C2C3C4[i-1]['remain']};;\
-			{C2C4C5[i-1]['key']};{C2C4C5[i-1]['l_value']};{C2C4C5[i-1]['g_value']};{C2C4C5[i-1]['remain']};;\
-			{C3C4C5[i-1]['key']};{C3C4C5[i-1]['l_value']};{C3C4C5[i-1]['g_value']};{C3C4C5[i-1]['remain']};;",\
+			{C1C2C3[i-1]['key']} ({C1C2C3[i-1]['remain']});{C1C2C3[i-1]['l_value']};{C1C2C3[i-1]['g_value']};\
+			{C1C3C4[i-1]['key']} ({C1C3C4[i-1]['remain']});{C1C3C4[i-1]['l_value']};{C1C3C4[i-1]['g_value']};\
+			{C1C4C5[i-1]['key']} ({C1C4C5[i-1]['remain']});{C1C4C5[i-1]['l_value']};{C1C4C5[i-1]['g_value']};\
+			{C2C3C4[i-1]['key']} ({C2C3C4[i-1]['remain']});{C2C3C4[i-1]['l_value']};{C2C3C4[i-1]['g_value']};\
+			{C2C4C5[i-1]['key']} ({C2C4C5[i-1]['remain']});{C2C4C5[i-1]['l_value']};{C2C4C5[i-1]['g_value']};\
+			{C3C4C5[i-1]['key']} ({C3C4C5[i-1]['remain']});{C3C4C5[i-1]['l_value']};{C3C4C5[i-1]['g_value']};",\
 		file=f_founds)
 		i+=1
 
