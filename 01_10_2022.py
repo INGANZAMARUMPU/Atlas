@@ -10,13 +10,14 @@ class Item:
 	n4:int
 	n5:int
 	total:int = field(init=False)
+	count:int = field(init=False, default=1)
 
 	def __post_init__(self):
 		self.total = self.n1+self.n2+self.n3+self.n4+self.n5
 		self.sort_index = self.total
 
 	def __str__(self):
-		f = f"{self.n1}, {self.n2}, {self.n3}, {self.n4}, {self.n5}, {self.total}"
+		f = f"{self.n1}, {self.n2}, {self.n3}, {self.n4}, {self.n5}, {self.total}, {self.count}"
 		return "{"+f+"}"
 
 with open(f"inputs/01_10_2022.txt") as file:
@@ -29,7 +30,15 @@ with open(f"inputs/01_10_2022.txt") as file:
 			items.append(Item(*[int(x) for x in line]))
 		print("sorting...")
 		items = sorted(items)
+		print("affectation...")
+		affectations = dict()
+		for item in tqdm(items):
+			if(item.total in affectations):
+				affectations[item.total] += 1
+			else:
+				affectations[item.total] = 1
 		print("exporting...")
 		for item in tqdm(items):
+			item.count = affectations[item.total]
 			print(item, end=", ", file=f_founds)
 	
