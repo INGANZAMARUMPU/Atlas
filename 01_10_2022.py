@@ -17,12 +17,11 @@ class Item:
 		self.sort_index = self.total
 
 	def __str__(self):
-		f = f"{self.n1}, {self.n2}, {self.n3}, {self.n4}, {self.n5}, {self.total}, {self.count}"
-		return "{"+f+"}"
+		return f"{self.n1},{self.n2},{self.n3},{self.n4},{self.n5},{self.total},{self.count}"
 
 with open(f"inputs/01_10_2022.txt") as file:
 	lines = file.readline().split("}, {")
-	with open(f"output/01_10_2022.txt", "w") as f_founds:
+	with open(f"output/01_10_2022.csv", "w") as f_founds:
 		items = []
 		print("purifying lines...")
 		for line in tqdm(lines):
@@ -38,7 +37,8 @@ with open(f"inputs/01_10_2022.txt") as file:
 			else:
 				affectations[item.total] = 1
 		print("exporting...")
+		print("sep=,", file=f_founds)
 		for item in tqdm(items):
 			item.count = affectations[item.total]
-			print(item, end=", ", file=f_founds)
+			print(item, file=f_founds)
 	
