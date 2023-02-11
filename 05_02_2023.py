@@ -74,11 +74,37 @@ with open(f"inputs/05_02_2023.csv") as file:
 print("exporting results...")
 with open(f"output/05_02_2023.csv", "w") as f_founds:
 	print(title, file=f_founds)
+	c_c_1 = 0
+	c_c_2 = 0
+	c_c_3 = 0
+	c_c_4 = 0
+	c_c_5 = 0
 	for item in tqdm(items):
-		item.c_1 = d_1[item.to_1()]
-		item.c_2 = d_2[item.to_2()]
-		item.c_3 = d_3[item.to_3()]
-		item.c_4 = d_4[item.to_4()]
-		item.c_5 = d_5[item.to_5()]
+		item.c_1 = d_1[item.to_1()] - c_c_1
+		item.c_2 = d_2[item.to_2()] - c_c_2
+		item.c_3 = d_3[item.to_3()] - c_c_3
+		item.c_4 = d_4[item.to_4()] - c_c_4
+		item.c_5 = d_5[item.to_5()] - c_c_5
+		c_c_1 += 1
+		c_c_2 += 1
+		c_c_3 += 1
+		c_c_4 += 1
+		c_c_5 += 1
+		
+		if(c_c_1 == d_1[item.to_1()]):
+			c_c_1 = 0
+
+		if(c_c_2 == d_2[item.to_2()]):
+			c_c_2 = 0
+
+		if(c_c_3 == d_3[item.to_3()]):
+			c_c_3 = 0
+
+		if(c_c_4 == d_4[item.to_4()]):
+			c_c_4 = 0
+
+		if(c_c_5 == d_5[item.to_5()]):
+			c_c_5 = 0
+
 		print(item, file=f_founds)
 	
